@@ -1,0 +1,31 @@
+extends: [base_package]
+dependencies:
+  build: [openmpi]  
+
+#sources:
+#- url: http://www.p4est.org/tarball/p4est-{{p4est_version}}.tar.gz
+#  key: tar.gz:ozmxzoje6tdf6defgaoomw7ycqkbdb33
+  
+
+build_stages:
+- name: retrival
+  after: prologue
+  handler: bash
+  bash: |
+    wget http://www.p4est.org/tarball/p4est-{{p4est_version}}.tar.gz
+    wget http://www.dealii.org/developer/external-libs/p4est-setup.sh
+    chmod 755 p4est-setup.sh
+
+- name: make_and_install
+  after: retrival
+  handler: bash
+  bash: |
+    ./p4est-setup.sh p4est-{{p4est_version}}.tar.gz ${ARTIFACT}
+
+
+#- name: postinstallation
+#  after: make_and_install
+#  handler: bash
+#  bash: |
+#    echo "export P4EST_HOME=\"{{p4est_home}}\"" >> {{home}}/.bashrc
+#    . {{home}}/.bashrc

@@ -1,0 +1,27 @@
+extends: [cmake_package]
+dependencies: 
+  build: [p4est, alttrilinos, hdf5, mpi]
+
+sources:
+- url: https://dealii.googlecode.com/files/deal.II-8.1.0.tar.gz
+  key: tar.gz:2ztlxwrkc62bxabcdvycsruci3zglacr
+
+build_stages:
+- name: configure
+  mode: override
+  extra: ['-D DEAL_II_WITH_MPI:BOOL=ON',
+          '-D CMAKE_INSTALL_PREFIX:PATH=${ARTIFACT}',
+          '-D CMAKE_CXX_COMPILER:PATH=/usr/bin/mpicxx',
+          '-D CMAKE_C_COMPILER:PATH=/usr/bin/mpicc',
+          '-D CMAKE_BUILD_TYPE:STRING=Release',
+          '-D CMAKE_CXX_FLAGS=-g -O3',
+          '-D CMAKE_C_FLAGS=-g -O3',
+          '-D CMAKE_FORTRAN_FLAGS=-g -O5',
+          '-D CMAKE_VERBOSE_MAKEFILE=FALSE',
+          '-D TRILINOS_DIR=${ALTTRILINOS_DIR}',
+          '-D P4EST_DIR=${P4EST_DIR}',
+          '-D HDF5_DIR=${HDF5_DIR}']
+
+when_build_dependency:
+- set: DEAL_II_HOME
+  value: ${ARTIFACT}

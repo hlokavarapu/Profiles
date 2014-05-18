@@ -1,0 +1,38 @@
+extends: [cmake_package]
+dependencies:
+  build: [mpi, openblas, lapack]
+
+sources:
+- url: http://trilinos.sandia.gov/download/files/trilinos-11.4.1-Source.tar.gz
+  key: tar.gz:f75irrdmjj5sfvczu72gibqy7ktow2jp
+
+build_stages:
+- name: configure
+  mode: override
+  extra: ['-D CMAKE_CXX_COMPILER:PATH=/usr/bin/mpicxx',
+          '-D CMAKE_C_COMPILER:PATH=/usr/bin/mpicc',
+          '-D CMAKE_BUILD_TYPE:STRING=RELEASE',
+          '-D CMAKE_CXX_FLAGS=-g -O3',
+          '-D CMAKE_C_FLAGS=-g -O3',
+          '-D CMAKE_FORTRAN_FLAGS=-g -O5',
+          '-D CMAKE_VERBOSE_MAKEFILE=FALSE',
+          '-D Trilinos_EXTRA_LINK_FLAGS=-lgfortran',
+          '-D Trilinos_VERBOSE_CONFIGURE=FALSE', 
+          '-D Trilinos_ENABLE_TESTS:BOOL=ON',
+          '-D Trilinos_ENABLE_ALL_OPTIONAL_PACKAGES:BOOL=OFF',
+          '-D Trilinos_ENABLE_Sacado=ON',
+          '-D Trilinos_ENABLE_Stratimikos=ON',
+          '-D Trilinos_ENABLE_EpetraExt=ON',
+          '-D Trilinos_ENABLE_Amesos=ON',
+          '-D Trilinos_ENABLE_Ifpack=ON',
+          '-D Trilinos_ENABLE_AztecOO=ON',
+          '-D Trilinos_ENABLE_ML=ON',
+          '-D BUILD_SHARED_LIBS:BOOL=ON',
+          '-D TPL_ENABLE_MPI:BOOL=ON',
+          '-D BLAS_LIBRARY_NAMES:STRING=openblas',
+          '-D BLAS_LIBRARY_DIRS:PATH=${OPENBLAS_DIR}/lib',
+          '-D LAPACK_LIBRARY_NAMES:STRING=lapack',
+          '-D LAPACK_LIBRARY_DIRS:PATH=${LAPACK_DIR}/lib',
+          '-D BUILD_SHARED_LIBS:BOOL=ON',
+          '-D CMAKE_INSTALL_PREFIX:PATH=${ARTIFACT}']
+

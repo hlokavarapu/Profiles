@@ -1,0 +1,14 @@
+extends: [cmake_package]
+dependencies:
+  build: [cmake, mpi]
+
+sources: 
+- url: http://geodynamics.org/cig/software/calypso/calypso-{{version}}.tar.gz
+  key: tar.gz:fpawsia4tmgufszm6st3ueh73ddive5w
+
+build_stages:
+- name: configure
+  mode: override
+  extra: ['-D CMAKE_INSTALL_PREFIX:PATH=${ARTIFACT}',
+          '-D CMAKE_Fortran_COMPILER={{fortranCompiler}}']
+

@@ -1,0 +1,21 @@
+extends:
+- file: hashstack2/linux.yaml
+
+parameters:
+  debug: false
+  version: 1.1.1 #Calypso version number
+
+packages:
+  cmake:
+  mpi:
+    use: openmpi
+  hdf5:  # need to double-check if mpi enabled
+  calypso:
+  
+
+package_dirs:
+- hashdist2/pkgs
+- hashdist2/base
+- pkgs
+
+  

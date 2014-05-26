@@ -14,8 +14,8 @@ packages:
   
 
 package_dirs:
-- hashdist2/pkgs
-- hashdist2/base
+- hashstack2/pkgs
+- hashstack2/base
 - pkgs
 
   

@@ -1,1 +1,16 @@
 Here are the profile config files necessary to install ASPECT through hashDist
+
+To install hashDist run the following command outside of the directory Profiles:
+  sh hashDistOnly.sh 
+
+In the directory Profiles execute the command:
+  git clone https://github.com/hashdist/hashstack.git
+
+Lastly, to install Aspect execute the command:
+  hit build -k always aspect.yaml
+
+Likewise, to install Calypso execute the command:
+  hit build -k always calypso.yaml
+
+Note that this is currently a work-around. Once successfully built, the executable, aspect will be in ${HOME}/.hashdist/tmp/aspect-<hash>/_build 
+

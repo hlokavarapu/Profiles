@@ -1,5 +1,5 @@
 extends:
-- file: hashstack2/linux.yaml
+- file: hashstack/linux.yaml
 
 parameters:
   debug: false
@@ -21,8 +21,8 @@ packages:
   
 
 package_dirs:
-- hashstack2/pkgs
-- hashstack2/base
+- hashstack/pkgs
+- hashstack/base
 - pkgs
 
   

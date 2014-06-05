@@ -1,28 +1,28 @@
 #!/bin/bash
+#Author: Harsha Lokavarapu
 
-if [ -d hashdist ]; then
+#Downloading utility tool hit
+if [ ! -d hashdist ]; then
 git clone https://github.com/hashdist/hashdist.git 
 fi
-
-cd hashdist
 
 #adding to path
 if [ -f ~/.bashrc ];
 then 
-  echo "export PATH=$PWD/bin:\$PATH" >> ~/.bashrc
+  echo "export PATH=$PWD/hashdist/bin:\$PATH" >> ~/.bashrc
   source ~/.bashrc
 else
-  export PATH=$PWD/bin:$PATH
+  export PATH=$PWD/hashdist/bin:$PATH
 fi
 
-pathToHit="`which hit`"
+pathToHit="$PWD/hashdist/bin"
 
-if [ -f $pathToHit ];
+if [ -f $pathToHit/hit ];
 then 
-  hit init-home
+  $pathToHit/hit init-home
 fi
 
-if [ -d hashstack ];
+if [ ! -d hashstack ];
 then
   git clone https://github.com/hashdist/hashstack.git
 fi

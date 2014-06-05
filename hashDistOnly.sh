@@ -1,6 +1,9 @@
 #!/bin/bash
 
+if [ -d hashdist ]; then
 git clone https://github.com/hashdist/hashdist.git 
+fi
+
 cd hashdist
 
 #adding to path
@@ -19,4 +22,7 @@ then
   hit init-home
 fi
 
-git clone https://github.com/hashdist/hashstack.git
+if [ -d hashstack ];
+then
+  git clone https://github.com/hashdist/hashstack.git
+fi

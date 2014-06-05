@@ -17,7 +17,7 @@ fi
 
 pathToHit="$PWD/hashdist/bin"
 
-if [ -f $pathToHit/hit ];
+if [ -d ~/.hashdist ];
 then 
   $pathToHit/hit init-home
 fi

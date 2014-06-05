@@ -19,3 +19,4 @@ then
   hit init-home
 fi
 
+git clone https://github.com/hashdist/hashstack.git

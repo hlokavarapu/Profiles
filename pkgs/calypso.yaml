@@ -10,5 +10,22 @@ build_stages:
 - name: configure
   mode: override
   extra: ['-D CMAKE_INSTALL_PREFIX:PATH=${ARTIFACT}',
-          '-D CMAKE_Fortran_COMPILER={{fortranCompiler}}']
+          '-D CMAKE_DISABLE_FIND_PACKAGE_FFTW:bool=yes']
+
+- name: install
+  mode: remove
+
+- name: postMake
+  after: configure
+  handler: bash
+  bash: |
+    cp -r ${BUILD}/bin ${ARTIFACT}
+
+#- name: postInstallation
+#  after: postMake 
+#  handler: bash
+#  bash: |
+#    echo "export CALYPSO_HOME=\"${ARTIFACT}\"" >> ${HOME}/.bash_profile
+#    . ${HOME}/.bash_profile
+
 

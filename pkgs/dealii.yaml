@@ -10,18 +10,39 @@ build_stages:
 - name: configure
   mode: override
   extra: ['-D DEAL_II_WITH_MPI:BOOL=ON',
+          '-D DEAL_II_WITH_PETSC:BOOL=OFF',
+          '-D DEAL_II_WITH_NETCDF:BOOL=OFF',
+          '-D DEAL_II_WITH_UMFPACK:BOOL=OFF',
+          '-D BUILD_SHARED_LIBS:BOOL=ON',
           '-D CMAKE_INSTALL_PREFIX:PATH=${ARTIFACT}',
           '-D CMAKE_CXX_COMPILER:PATH=/usr/bin/mpicxx',
           '-D CMAKE_C_COMPILER:PATH=/usr/bin/mpicc',
           '-D CMAKE_BUILD_TYPE:STRING=Release',
           '-D CMAKE_CXX_FLAGS=-g -O3',
           '-D CMAKE_C_FLAGS=-g -O3',
-          '-D CMAKE_FORTRAN_FLAGS=-g -O5',
           '-D CMAKE_VERBOSE_MAKEFILE=FALSE',
           '-D TRILINOS_DIR=${ALTTRILINOS_DIR}',
           '-D P4EST_DIR=${P4EST_DIR}',
           '-D HDF5_DIR=${HDF5_DIR}']
 
+#- name: postMake
+#  after: make_and_install
+#  handler: bash
+#  bash: |
+#    cp -r ${BUILD}/_build/bin ${ARTIFACT}
+#    cp -r ${BUILD}/examples ${ARTIFACT}
+#    cp -r ${BUILD}/_build/lib ${ARTIFACT}
+
+#- name: postInstallation
+#  after: postMake 
+#  handler: bash
+#  bash: |
+#    echo "export P4EST_HOME=\"${ARTIFACT}\"" >> ${HOME}/.bash_profile
+#    . ${HOME}/.bashrc
+
+
 when_build_dependency:
-- set: DEAL_II_HOME
-  value: ${ARTIFACT}
+- prepend_path: PATH
+  value: ${ARTIFACT}/bin
+- prepend_path: LD_LIBRARY_PATH
+  value: ${ARTIFACT}/lib

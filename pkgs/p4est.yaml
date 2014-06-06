@@ -12,6 +12,8 @@ build_stages:
   after: prologue
   handler: bash
   bash: |
+    mkdir _build
+    cd _build
     wget http://www.p4est.org/tarball/p4est-{{p4est_version}}.tar.gz
     wget http://www.dealii.org/developer/external-libs/p4est-setup.sh
     chmod 755 p4est-setup.sh
@@ -22,10 +24,21 @@ build_stages:
   bash: |
     ./p4est-setup.sh p4est-{{p4est_version}}.tar.gz ${ARTIFACT}
 
+- name: postMake
+  after: make_and_install
+  handler: bash
+  bash: | 
+    rm -rf 
+    cp -r ${BUILD}/_build/* ${ARTIFACT}
 
-#- name: postinstallation
-#  after: make_and_install
+#- name: postInstallation
+#  after: postMake 
 #  handler: bash
 #  bash: |
-#    echo "export P4EST_HOME=\"{{p4est_home}}\"" >> {{home}}/.bashrc
-#    . {{home}}/.bashrc
+#    echo "export P4EST_HOME=\"${ARTIFACT}\"" >> ${HOME}/.bash_profile
+#    . ${HOME}/.bashrc
+
+when_build_dependency:
+- prepend_path: PATH
+  value: ${ARTIFACT}/FAST
+

@@ -21,7 +21,8 @@ build_stages:
   after: configure 
   handler: bash
   bash: | 
-    cp -r ${BUILD}/_build/* ${ARTIFACT}
+    mkdir ${ARTIFACT}/bin
+    cp ${BUILD}/_build/aspect ${ARTIFACT}/bin
 
 when_build_dependency:
 - prepend_path: PATH

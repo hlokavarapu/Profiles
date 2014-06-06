@@ -7,17 +7,12 @@ git clone https://github.com/hashdist/hashdist.git
 fi
 
 #adding to path
-if [ -f ~/.bashrc ];
-then 
-  echo "export PATH=$PWD/hashdist/bin:\$PATH" >> ~/.bashrc
-  source ~/.bashrc
-else
-  export PATH=$PWD/hashdist/bin:$PATH
-fi
+  echo "export PATH=$PATH:$PWD/hashdist/bin" >> ~/.bash_profile
+  source ~/.bash_profile
 
 pathToHit="$PWD/hashdist/bin"
 
-if [ -d ~/.hashdist ];
+if [ ! -d ~/.hashdist ];
 then 
   $pathToHit/hit init-home
 fi

@@ -14,15 +14,22 @@ build_stages:
           '-D CMAKE_INSTALL_PREFIX:PATH=${ARTIFACT}',
           '-D CMAKE_BUILD_TYPE=Release']
 
+- name: make
+  mode: override
+  handler: bash
+  bash: |
+    cmake --build . -- -j {{HASHDIST_CPU_COUNT}}
+
 - name: install
   mode: remove
 
 - name: postMake
-  after: configure 
+  after: make 
   handler: bash
   bash: | 
     mkdir ${ARTIFACT}/bin
     cp ${BUILD}/_build/aspect ${ARTIFACT}/bin
+    cp -r ${BUILD}/cookbooks ${ARTIFACT}/
 
 when_build_dependency:
 - prepend_path: PATH

@@ -36,3 +36,6 @@ build_stages:
           '-D BUILD_SHARED_LIBS:BOOL=ON',
           '-D CMAKE_INSTALL_PREFIX:PATH=${ARTIFACT}']
 
+when_build_dependency:
+- prepend_path: LD_LIBRARY_PATH
+  value: ${ARTIFACT}/lib

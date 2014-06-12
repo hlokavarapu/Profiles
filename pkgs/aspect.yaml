@@ -3,19 +3,34 @@ dependencies:
   build: [dealii]
 
 sources:
-- url: http://geodynamics.org/cig/software/aspect/aspect-1.0.tar.gz
-  key: tar.gz:t32l7zwfaaiqcz7r5h7upqnzhhk2vq7k
+- url: http://geodynamics.org/cig/software/aspect/aspect-{(version)}.tar.gz
+  key: tar.gz:buaeghlsj2p3kccbv3jjlu33vk4mb2pc
 
 build_stages:
+
 - name: configure
   mode: override
   extra: ['-D DEAL_II_DIR=${DEALII_DIR}',
           '-D CMAKE_INSTALL_PREFIX:PATH=${ARTIFACT}',
           '-D CMAKE_BUILD_TYPE=Release']
 
+- name: make
+  mode: override
+  handler: bash
+  bash: |
+    cmake --build . -- -j {{HASHDIST_CPU_COUNT}}
+
 - name: install
   mode: remove
 
+- name: postMake
+  after: make 
+  handler: bash
+  bash: | 
+    mkdir ${ARTIFACT}/bin
+    cp ${BUILD}/_build/aspect ${ARTIFACT}/bin
+    cp -r ${BUILD}/cookbooks ${ARTIFACT}/
+
 when_build_dependency:
-- set: ASPECT_HOME
-  value: ${ARTIFACT}
+- prepend_path: PATH
+  value: ${ARTIFACT}/bin

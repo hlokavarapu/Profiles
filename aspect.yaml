@@ -5,6 +5,7 @@ parameters:
   debug: false
   p4est_version: 0.3.4.2
   version: 1.1 
+  hashdist_cpu_count: 10
 
 packages:
   cmake:

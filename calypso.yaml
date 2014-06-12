@@ -4,7 +4,7 @@ extends:
 parameters:
   debug: false
   version: 1.1.1 #Calypso version number
-  fortranCompiler: gfortran
+  fortranCompiler: mpif90
 
 packages:
   cmake:

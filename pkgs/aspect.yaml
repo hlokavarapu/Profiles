@@ -3,7 +3,7 @@ dependencies:
   build: [dealii]
 
 sources:
-- url: http://geodynamics.org/cig/software/aspect/aspect-{(version)}.tar.gz
+- url: http://geodynamics.org/cig/software/aspect/aspect-{{version}}.tar.gz
   key: tar.gz:buaeghlsj2p3kccbv3jjlu33vk4mb2pc
 
 build_stages:
@@ -18,7 +18,7 @@ build_stages:
   mode: override
   handler: bash
   bash: |
-    cmake --build . -- -j {{HASHDIST_CPU_COUNT}}
+    cmake --build . -- -j {{hashdist_cpu_count}}
 
 - name: install
   mode: remove

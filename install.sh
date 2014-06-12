@@ -2,23 +2,33 @@
 #Author: Harsha Lokavarapu
 
 #Downloading utility tool hit
+
+flag=0
 if [ ! -d ~/.hashdist ]; 
 then
   if [ ! -d hashdist ]; then
     git clone https://github.com/hashdist/hashdist.git 
   fi
+  
+  flag=1
+fi
 
-  #adding to path
-  ENV="export PATH=$PATH:$PWD/hashdist/bin"
+#adding to path
+ENV="export PATH=$PATH:$PWD/hashdist/bin"
+if [ -z `which hit` ]; 
+then 
   if [ -f ${HOME}/.bashrc ];
   then
-    echo $ENV >> ~/.bash_rc
-    source ~/.bash_rc
+    echo $ENV >> ~/.bashrc
+    . ~/.bashrc
   else
     echo $ENV >> ~/.bash_profile
-    source ~/.bash_profile
+    . ~/.bash_profile
   fi
+fi
 
+if [ $flag -eq 1 ]; 
+then
   $PWD/hashdist/bin/hit init-home
 fi
 

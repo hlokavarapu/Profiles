@@ -9,8 +9,15 @@ then
   fi
 
   #adding to path
-  echo "export PATH=$PATH:$PWD/hashdist/bin" >> ~/.bash_profile
-  source ~/.bash_profile
+  ENV="export PATH=$PATH:$PWD/hashdist/bin"
+  if [ -f ${HOME}/.bashrc ];
+  then
+    echo $ENV >> ~/.bash_rc
+    source ~/.bash_rc
+  else
+    echo $ENV >> ~/.bash_profile
+    source ~/.bash_profile
+  fi
 
   $PWD/hashdist/bin/hit init-home
 fi

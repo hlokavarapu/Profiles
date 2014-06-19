@@ -1,13 +1,16 @@
-Here are the profile config files necessary to install ASPECT through hashDist
+Here are the profile config files necessary to install ASPECT through hashDist.
+  * Note, the dependencies for hashDist are python and git.
 
-To install hashDist run the following command outside of the directory Profiles:
-  sh hashDistOnly.sh 
+  To acquire the code run:
+  	git clone https://github.com/Vandemar/Profiles.git
+	cd Profiles
 
-This requires git as well as python which come out of the box these days.
+  To install hashDist run:
+    	sh install.sh 
 
-Lastly, to install Aspect execute the command:
-  hit build aspect.yaml
+To install Aspect execute the command in a new terminal:
+  hit build -j {{Number_of_Processors}} aspect.yaml
 
-If you are trying to install over ssh then execute the command:
-  nohup hit build aspect.yaml &
+If you are trying to install over ssh then execute the command in a new terminal:
+  nohup hit build -j {{Number_of_Processors}} aspect.yaml &
 

@@ -2,21 +2,15 @@ extends:
 - file: hashstack/linux.yaml
 
 parameters:
-  debug: false
-  version: 1.1.1 #Calypso version number
   fortranCompiler: mpif90
 
 packages:
-  cmake:
-  mpi:
-    use: openmpi
-  hdf5:  # need to double-check if mpi enabled
-  calypso:
+ mpi:
+   use: openmpi
+ calypso:
   
 
 package_dirs:
 - hashstack/pkgs
 - hashstack/base
-- pkgs
-
   

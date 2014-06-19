@@ -34,5 +34,6 @@ fi
 
 if [ ! -d hashstack ];
 then
-  git clone https://github.com/hashdist/hashstack.git
+  git clone https://github.com/Vandemar/hashstack.git -b CIG hashstack
+#  git clone https://github.com/hashdist/hashstack.git
 fi

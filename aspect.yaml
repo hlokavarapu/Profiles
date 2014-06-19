@@ -3,27 +3,14 @@ extends:
 
 parameters:
   debug: false
-  p4est_version: 0.3.4.2
-  version: 1.1 
-  hashdist_cpu_count: 10
+  gitUrl: https://github.com/geodynamics/aspect
+  gitCommit: 9398730971b5217314dc121bc16852d75951d0b4
 
 packages:
-  cmake:
   mpi:
     use: openmpi
-  openblas:
-  lapack: 
-    compiler: gcc # Note that this specifies to use the optimal compiler flags for gcc, given that gfortran is already installed.
-                  # If not, then run the ubuntu command "sudo apt-get install gfortran" 
-  p4est:
-  hdf5:  # need to double-check if mpi was enabled
-  alttrilinos:
-  dealii:
   aspect:
   
 package_dirs:
 - hashstack/pkgs
 - hashstack/base
-- pkgs
-
-  

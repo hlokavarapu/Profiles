@@ -11,6 +11,7 @@ packages:
   
 
 package_dirs:
+- hashstack/pkgs/CIG
 - hashstack/pkgs
 - hashstack/base
   

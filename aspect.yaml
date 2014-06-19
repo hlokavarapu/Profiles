@@ -4,7 +4,7 @@ extends:
 parameters:
   debug: false
   gitUrl: https://github.com/geodynamics/aspect
-  gitCommit: 9398730971b5217314dc121bc16852d75951d0b4
+  gitCommit: 87200360bb3f344466d54f37461ff4978e8fc507 
 
 packages:
   mpi:
@@ -12,5 +12,6 @@ packages:
   aspect:
   
 package_dirs:
+- hashstack/pkgs/CIG
 - hashstack/pkgs
 - hashstack/base

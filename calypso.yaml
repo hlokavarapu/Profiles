@@ -2,7 +2,9 @@ extends:
 - file: hashstack/linux.yaml
 
 parameters:
-  fortranCompiler: mpif90
+  gitUrl: git://github.com/geodynamics/calypso.git 
+  gitCommit: 0d81850eaa4453ff4bcb60eaecc3051ee82fb1e6 
+  fortranCompiler: gfortran
 
 packages:
  mpi:

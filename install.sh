@@ -1,37 +1,29 @@
 #!/bin/bash
 #Author: Harsha Lokavarapu
 
-#Downloading utility tool hit
+#Shell script to install hashDist, a python based software.
 
-flag=0
-if [ ! -d ~/.hashdist ]; 
-then
-  if [ ! -d hashdist ]; then
-    git clone https://github.com/hashdist/hashdist.git 
-  fi
-  
-  flag=1
-fi
-
-#adding to path
+#ENVIRONMENT variables
+INSTALL_DIR="$HOME/local"
 ENV="export PATH=$PATH:$PWD/hashdist/bin"
-if [ -z `which hit` ]; 
-then 
-  if [ -f ${HOME}/.bashrc ];
-  then
-    echo $ENV >> ~/.bashrc
-    . ~/.bashrc
-  else
-    echo $ENV >> ~/.bash_profile
-    . ~/.bash_profile
+  
+#Install hit, a utility tool. 
+if [ -z `which hit` ] || [ ! -d $HOME/.hashdist ]; then
+  if [ -d $HOME/local ]; then
+      mkdir $HOME/local
   fi
+  git clone https://github.com/hashdist/hashdist.git $HOME/local/
+  echo $ENV >> $HOME/.bash_profile
+  . $HOME/.bash_profile
 fi
 
-if [ $flag -eq 1 ]; 
+#Initializing hashDist
+if [ ! -d $HOME/.hashdist ]; 
 then
-  $PWD/hashdist/bin/hit init-home
+  $HOME/bin/hit init-home
 fi
 
+#Downloading hashDist Profile Specifications
 if [ ! -d hashstack ];
 then
   git clone https://github.com/Vandemar/hashstack.git -b CIG hashstack

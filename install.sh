@@ -4,15 +4,15 @@
 #Shell script to install hashDist, a python based software.
 
 #ENVIRONMENT variables
-INSTALL_DIR="$HOME/local"
-ENV="export PATH=$PATH:$PWD/hashdist/bin"
+INSTALL_DIR="$HOME/local/hashDist"
+ENV="export PATH=\"$PATH:$INSTALL_DIR/bin\""
   
 #Install hit, a utility tool. 
-if [ -z `which hit` ] || [ ! -d $HOME/.hashdist ]; then
-  if [ -d $HOME/local ]; then
-      mkdir $HOME/local
+if [ -z `which hit` ]; then
+  if [ ! -d $INSTALL_DIR ]; then
+      mkdir -p $INSTALL_DIR
   fi
-  git clone https://github.com/hashdist/hashdist.git $HOME/local/
+  git clone https://github.com/hashdist/hashdist.git $INSTALL_DIR
   echo $ENV >> $HOME/.bash_profile
   . $HOME/.bash_profile
 fi
@@ -20,7 +20,7 @@ fi
 #Initializing hashDist
 if [ ! -d $HOME/.hashdist ]; 
 then
-  $HOME/bin/hit init-home
+  hit init-home
 fi
 
 #Downloading hashDist Profile Specifications

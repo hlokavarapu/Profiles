@@ -10,7 +10,7 @@ else
   INSTALL_DIR="$HOME/local/hashDist"
 fi
 
-ENV="export PATH=\"$PATH:$INSTALL_DIR/bin\""
+ENV="export PATH=\"\$PATH:$INSTALL_DIR/bin\""
   
 #Install hit, a utility tool. 
 if [ -z `which hit` ]; then

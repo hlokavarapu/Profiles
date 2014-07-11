@@ -15,6 +15,11 @@ for itr in $@
 do
   if [ "-j" = "$itr" ]; then
     jf=0
+    continue
+  fi
+  if [ $jf -eq 0 ]; then
+    BUILD_DIR=$itr
+    echo "Build Dir has been set to $BUILD_DIR"
   fi
   if [ "-d" = "$itr" ]; then
     pf=0

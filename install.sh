@@ -13,7 +13,7 @@ fi
 ENV="export PATH=\"\$PATH:$INSTALL_DIR/bin\""
   
 #Install hit, a utility tool. 
-if [ -z `which hit` ]; then
+if [ ! -z `which hit` ]; then
   if [ ! -d $INSTALL_DIR ]; then
       mkdir -p $INSTALL_DIR
   fi

@@ -2,14 +2,29 @@
 #Author: Harsha Lokavarapu
 
 #Shell script to install hashDist, a python based software.
+#Options: 
+#         -j    =>  jenkins build  
+#         -d <name of directory to install>   => specify a particular install directory 
+#Flags
+jf=1
+pf=1
+INSTALL_DIR="$HOME/local/hashDist"
 
+for itr in $@ 
+do
+  if [ "-j" -eq $itr ]; then
+    $jf=0
+  fi
+  if [ "-d" -eq $itr ]; then
+    $pf=0
+  fi
+  if [ $pf ]; then
+    INSTALL_DIR=$itr
+    $pf=1
+  fi
+done
+  
 #ENVIRONMENT variables
-if [ ! -z $1 ]; then
-  INSTALL_DIR=$1
-else
-  INSTALL_DIR="$HOME/local/hashDist"
-fi
-
 ENV="export PATH=\"\$PATH:$INSTALL_DIR/bin\""
   
 #Install hit, a utility tool. 

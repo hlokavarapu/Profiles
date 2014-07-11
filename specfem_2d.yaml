@@ -1,0 +1,13 @@
+- file: linux.yaml
+
+parameters:
+  fortranCompiler: gfortran #Specify Compiler name here
+
+packages:
+  specfem_2D:
+
+package_dirs:
+- hashstack/pkgs/CIG
+- hashstack/pkgs
+- hashstack/base
+- hashstack

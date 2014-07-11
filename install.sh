@@ -4,7 +4,12 @@
 #Shell script to install hashDist, a python based software.
 
 #ENVIRONMENT variables
-INSTALL_DIR="$HOME/local/hashDist"
+if [ ! -z $1 ]; then
+  INSTALL_DIR=$1
+else
+  INSTALL_DIR="$HOME/local/hashDist"
+fi
+
 ENV="export PATH=\"$PATH:$INSTALL_DIR/bin\""
   
 #Install hit, a utility tool. 

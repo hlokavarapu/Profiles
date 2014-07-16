@@ -1,5 +1,5 @@
 extends:
-- file: linux.yaml
+- file: hashstack/linux.yaml
 
 parameters:
   fortranCompiler: gfortran #Specify Compiler name here

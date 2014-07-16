@@ -74,5 +74,10 @@ if [ ! -d $BUILD_DIR ] && [ $jf -eq 0 ]; then
 fi
 if [ ! -d $BUILD_DIR/hashstack ] && [ $jf -eq 0 ]; then 
   git clone https://github.com/Vandemar/hashstack.git -b CIG $BUILD_DIR/hashstack
+else
+  cd $BUILD_DIR
+  git pull
+  cd hashstack
+  git pull
 fi
 

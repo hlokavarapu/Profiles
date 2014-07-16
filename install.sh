@@ -20,6 +20,7 @@ do
   if [ $jf -eq 0 ]; then
     BUILD_DIR=$itr
     echo "Build Dir has been set to $BUILD_DIR"
+    jf=1
   fi
   if [ "-d" = "$itr" ]; then
     pf=0

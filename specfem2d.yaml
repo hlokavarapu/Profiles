@@ -5,7 +5,7 @@ parameters:
   fortranCompiler: gfortran #Specify Compiler name here
 
 packages:
-  specfem_2D:
+  specfem_2d:
 
 package_dirs:
 - hashstack/pkgs/CIG

@@ -71,8 +71,13 @@ fi
 #For jenkins
 if [ ! -d $BUILD_DIR ] && [ $jf -eq 0 ]; then
   mkdir -p $BUILD_DIR
+  if [ -z `ls $BUILD_DIR` ]; then
+    git clone https://github.com/Vandemar/Profiles.git $BUILD_DIR
+  fi
 fi
+
 if [ ! -d $BUILD_DIR/hashstack ] && [ $jf -eq 0 ]; then 
+  mkdir $BUILD_DIR/hashstack
   git clone https://github.com/Vandemar/hashstack.git -b CIG $BUILD_DIR/hashstack
 else
   cd $BUILD_DIR

@@ -8,6 +8,7 @@
 #         -h   => help command, dumps flags
 #Flags
 jf=1
+bf=1
 pf=1
 INSTALL_DIR="$HOME/local/hashDist"
 BUILD_DIR="$HOME/hashBuild"
@@ -15,12 +16,13 @@ for itr in $@
 do
   if [ "-j" = "$itr" ]; then
     jf=0
+    bf=0
     continue
   fi
-  if [ $jf -eq 0 ]; then
+  if [ $bf -eq 0 ]; then
     BUILD_DIR=$itr
     echo "Build Dir has been set to $BUILD_DIR"
-    jf=1
+    bf=1
   fi
   if [ "-d" = "$itr" ]; then
     pf=0

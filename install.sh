@@ -47,9 +47,6 @@ ENV="export PATH=\"\$PATH:$INSTALL_DIR/bin\""
 
 #Install hit, a utility tool. 
 if [ -z `which hit` ]; then
-  if [ ! -d $INSTALL_DIR ]; then
-      mkdir -p $INSTALL_DIR
-  fi
   git clone https://github.com/hashdist/hashdist.git $INSTALL_DIR
   echo $ENV >> $HOME/.bash_profile
   . $HOME/.bash_profile

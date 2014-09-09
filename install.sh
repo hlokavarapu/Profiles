@@ -11,7 +11,7 @@ jf=1
 bf=1
 pf=1
 INSTALL_DIR="$HOME/local/hashDist"
-BUILD_DIR="$HOME/hashBuild"
+BUILD_DIR="$PWD"
 for itr in $@ 
 do
   if [ "-j" = "$itr" ]; then
@@ -44,12 +44,9 @@ done
   
 #ENVIRONMENT variables
 ENV="export PATH=\"\$PATH:$INSTALL_DIR/bin\""
-  
+
 #Install hit, a utility tool. 
 if [ -z `which hit` ]; then
-  if [ ! -d $INSTALL_DIR ]; then
-      mkdir -p $INSTALL_DIR
-  fi
   git clone https://github.com/hashdist/hashdist.git $INSTALL_DIR
   echo $ENV >> $HOME/.bash_profile
   . $HOME/.bash_profile
@@ -62,22 +59,18 @@ then
 fi
 
 #Downloading hashDist Profile Specifications
-if [ ! -d hashstack ] && [ $jf -ne 0 ];
+if [ ! -d $BUILD_DIR/hashstack ] && [ $jf -ne 0 ];
 then
-  git clone https://github.com/Vandemar/hashstack.git -b CIG hashstack
+  git clone https://github.com/Vandemar/hashstack.git -b CIG $BUILD_DIR/hashstack
 #  git clone https://github.com/hashdist/hashstack.git
 fi
 
 #For jenkins
 if [ ! -d $BUILD_DIR ] && [ $jf -eq 0 ]; then
-  mkdir -p $BUILD_DIR
-  if [ -z `ls $BUILD_DIR` ]; then
-    git clone https://github.com/Vandemar/Profiles.git $BUILD_DIR
-  fi
+  git clone https://github.com/Vandemar/Profiles.git $BUILD_DIR
 fi
 
 if [ ! -d $BUILD_DIR/hashstack ] && [ $jf -eq 0 ]; then 
-  mkdir $BUILD_DIR/hashstack
   git clone https://github.com/Vandemar/hashstack.git -b CIG $BUILD_DIR/hashstack
 else
   cd $BUILD_DIR
